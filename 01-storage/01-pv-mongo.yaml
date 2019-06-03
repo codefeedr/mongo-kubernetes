@@ -1,0 +1,74 @@
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: pv-mongo-0
+  namespace: ghtorrent
+  labels:
+    app: mongo
+spec:
+  capacity:
+    storage: 20Gi
+  accessModes:
+  - ReadWriteOnce
+  persistentVolumeReclaimPolicy: Retain
+  storageClassName: zfs-storage
+  local:
+    path: /mnt/mongo
+  nodeAffinity:
+    required:
+      nodeSelectorTerms:
+      - matchExpressions:
+        - key: kubernetes.io/hostname
+          operator: In
+          values:
+          - node_one
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: pv-mongo-1
+  namespace: ghtorrent
+  labels:
+    app: mongo
+spec:
+  capacity:
+    storage: 20Gi
+  accessModes:
+  - ReadWriteOnce
+  persistentVolumeReclaimPolicy: Retain
+  storageClassName: zfs-storage
+  local:
+    path: /mnt/mongo
+  nodeAffinity:
+    required:
+      nodeSelectorTerms:
+      - matchExpressions:
+        - key: kubernetes.io/hostname
+          operator: In
+          values:
+          - node_two
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: pv-mongo-2
+  namespace: ghtorrent
+  labels:
+    app: mongo
+spec:
+  capacity:
+    storage: 20Gi
+  accessModes:
+  - ReadWriteOnce
+  persistentVolumeReclaimPolicy: Retain
+  storageClassName: zfs-storage
+  local:
+    path: /mnt/mongo
+  nodeAffinity:
+    required:
+      nodeSelectorTerms:
+      - matchExpressions:
+        - key: kubernetes.io/hostname
+          operator: In
+          values:
+          - node_three
