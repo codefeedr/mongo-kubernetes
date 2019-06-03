@@ -27,6 +27,8 @@ spec:
         - name: mongod-container
           image: mongo
           env:
+          - name: MONGO_INITDB_DATABASE
+            value: admin
           - name: MONGO_INITDB_ROOT_USERNAME
             valueFrom:
               secretKeyRef:
@@ -47,11 +49,11 @@ spec:
           ports:
             - containerPort: 27017
           volumeMounts:
-            - name: mongo-data
+            - name: data
               mountPath: /data/db
   volumeClaimTemplates:
   - metadata:
-      name: mongo-data
+      name: data
     spec:
       accessModes: [ "ReadWriteOnce" ]
       storageClassName: zfs-storage
