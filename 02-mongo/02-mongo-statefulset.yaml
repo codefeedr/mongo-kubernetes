@@ -12,12 +12,17 @@ spec:
         app: mongo
         replicaset: MainRepSet
     spec:
+      affinity:
+        podAntiAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            - labelSelector:
+                matchExpressions:
+                  - key: "app"
+                    operator: In
+                    values:
+                    - mongo
+              topologyKey: "kubernetes.io/hostname"
       terminationGracePeriodSeconds: 10
-      volumes:
-        - name: secrets-volume
-          secret:
-            secretName: shared-bootstrap-data
-            defaultMode: 256
       containers:
         - name: mongod-container
           image: mongo
@@ -39,27 +44,20 @@ spec:
             - "--replSet"
             - "MainRepSet"
             - "--auth"
-            - "--clusterAuthMode"
-            - "keyFile"
-            - "--keyFile"
-            - "/etc/secrets-volume/internal-auth-mongodb-keyfile"
-            - "--setParameter"
-            - "authenticationMechanisms=SCRAM-SHA-1"
           ports:
             - containerPort: 27017
           volumeMounts:
-            - name: secrets-volume
-              readOnly: true
-              mountPath: /etc/secrets-volume
-            - name: mongodb-persistent-storage-claim
+            - name: mongo-data
               mountPath: /data/db
   volumeClaimTemplates:
   - metadata:
-      name: mongodb-persistent-storage-claim
-      annotations:
-        volume.beta.kubernetes.io/storage-class: "fast"
+      name: mongo-data
     spec:
       accessModes: [ "ReadWriteOnce" ]
+      storageClassName: zfs-storage
+      selector:
+        matchLabels:
+          app: mongo
       resources:
         requests:
-          storage: 30Gi
+          storage: 20Gi
