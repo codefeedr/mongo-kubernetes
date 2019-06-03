@@ -1,1 +1,1 @@
-mongo-kubernetes
+# 🍃 MongoDB manifests for Kubernetes
