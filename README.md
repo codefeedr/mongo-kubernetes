@@ -29,7 +29,7 @@ The login credentials:
 ---
 ### Resources
   1.
-https://pauldone.blogspot.com/2017/06/deploying-mongodb-on-kubernetes-gke25.html
+https://pauldone.blogspot.com/2017/06/deploying-mongodb-on-kubernetes-gke25.html  
   2.
-https://stackoverflow.com/questions/51815216/authentication-mongo-deployed-on-kubernetes   
-  3. https://github.com/pkdone/gke-mongodb-demo
+https://stackoverflow.com/questions/51815216/authentication-mongo-deployed-on-kubernetes  
+3. https://github.com/pkdone/gke-mongodb-demo   
