@@ -1,7 +1,7 @@
 # 🍃 MongoDB manifests for Kubernetes
 
-This repository stores manifests to run a replicated MongoDB cluster on
-Kubernetes.
+This repository stores manifests to run a 3-node replicated MongoDB
+cluster on Kubernetes.
 
 ## Prerequisites
 - Kubernetes cluster with at least 3 worker nodes.
@@ -19,8 +19,9 @@ git clone https://github.com/codefeedr/mongo-kubernetes
 ```
 
 ## Architecture
+![](arch.png)
 The mongo instances are deployed on the three worker nodes behind a
-(headless) service. The addresses of these instances:
+(headless) service. The (internal) addresses of these instances:
 
 ```bash
 mongo-0.mongo-hs.ghtorrent:27017
