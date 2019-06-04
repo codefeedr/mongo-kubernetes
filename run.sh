@@ -42,5 +42,5 @@ echo
 
 # Create the admin user (this will automatically disable the localhost exception)
 echo "Creating user: 'main_admin'"
-kubectl exec mongod-0 -c mongod-container -- mongo --eval 'db.getSiblingDB("admin").createUser({user:"ghtorrent",pwd:"ghtorrent",roles:[{role:"root",db:"admin"}]});'
+kubectl exec -n ghtorrent mongo-0 -c mongod-container -- mongo --eval 'db.getSiblingDB("admin").createUser({user:"ghtorrent",pwd:"ghtorrent",roles:[{role:"root",db:"admin"}]});'
 echo
