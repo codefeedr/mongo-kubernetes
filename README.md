@@ -12,6 +12,12 @@ dataset](https://www.thegeekdiary.com/zfs-tutorials-creating-zfs-pools-and-file-
 this in the manifests see the [pv-mongo
 file](01-storage/01-pv-mongo.yaml).
 
+## How To Run
+```sh
+git clone https://github.com/codefeedr/mongo-kubernetes
+./run.sh
+```
+
 ## Architecture
 The mongo instances are deployed on the three worker nodes behind a
 (headless) service. The addresses of these instances:
@@ -28,8 +34,7 @@ The login credentials:
 
 ---
 ### Resources
-  1.
-https://pauldone.blogspot.com/2017/06/deploying-mongodb-on-kubernetes-gke25.html  
-  2.
-https://stackoverflow.com/questions/51815216/authentication-mongo-deployed-on-kubernetes  
-3. https://github.com/pkdone/gke-mongodb-demo   
+
+1.[https://pauldone.blogspot.com/2017/06/deploying-mongodb-on-kubernetes-gke25.html](https://pauldone.blogspot.com/2017/06/deploying-mongodb-on-kubernetes-gke25.html)  
+2.[https://stackoverflow.com/questions/51815216/authentication-mongo-deployed-on-kubernetes](https://stackoverflow.com/questions/51815216/authentication-mongo-deployed-on-kubernetes)  
+3.[https://github.com/pkdone/gke-mongodb-demo](https://github.com/pkdone/gke-mongodb-demo)    
