@@ -1,10 +1,20 @@
 #!bin/sh
 
 # Apply all K8s manifests setting up storage/pv's/statefulset.
-echo "Applying all Kubernetes manifests"
+echo "Applying general Kubernetes manifests."
 kubectl apply -f 0-general/
+echo
+
+echo "Creating keyfile for MongoDB secret."
+TMPFILE=$(mktemp)
+/usr/bin/openssl rand -base64 741 > $TMPFILE
+kubectl -n ghtorrent create secret generic shared-bootstrap-data --from-file=internal-auth-mongodb-keyfile=$TMPFILE
+rm $TMPFILE
+
+echo "Applying MongoDB manifests."
 kubectl apply -f 01-storage/
 kubectl apply -f 02-mongo/
+echo
 
 # Wait for the mongo instances to run.
 echo "Waiting for the mongo containers to run (`date`)."
