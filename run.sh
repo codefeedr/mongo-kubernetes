@@ -39,3 +39,8 @@ kubectl -n ghtorrent exec mongo-0 -c mongod-container -- mongo --eval 'while (rs
 sleep 20 # More sleep to ensure everything is ready! (3.6.0 workaround for https://jira.mongodb.org/browse/SERVER-31916 )
 echo "...initialisation of MongoDB Replica Set completed"
 echo
+
+# Create the admin user (this will automatically disable the localhost exception)
+echo "Creating user: 'main_admin'"
+kubectl exec mongod-0 -c mongod-container -- mongo --eval 'db.getSiblingDB("admin").createUser({user:"ghtorrent",pwd:"ghtorrent",roles:[{role:"root",db:"admin"}]});'
+echo

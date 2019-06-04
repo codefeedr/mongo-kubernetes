@@ -52,9 +52,6 @@ spec:
               mountPath: /etc/secrets-volume
             - name: data
               mountPath: /data/db
-                          - name: secrets-volume
-              readOnly: true
-              mountPath: /etc/secrets-volume
   volumeClaimTemplates:
   - metadata:
       name: data
